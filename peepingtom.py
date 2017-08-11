@@ -105,9 +105,21 @@ $ python ./%(prog)s <mode> <path>"""
     # print "test"
     try:
         for target in targets:
+            # print type(target)
             # print target
-            # Displays the target name to the right of the progress bar
-            # print opts.verbose
+            if target[-4:] == ':443' and target[0:4] != 'http':
+                target ='https://'+ target
+            elif target[0:4] != 'http':
+                # print target[0:4]
+                target = 'http://' + target
+                # print target
+            elif target[0:5] == 'http:' or target[0:6] == 'https:':
+                # print target
+                # continue
+                # Displays the target name to the right of the progress bar
+                # print opts.verbose
+                print target
+            # print target
             if opts.verbose:
                 printProgress(cnt, tot, target, previouslen)
             else:
